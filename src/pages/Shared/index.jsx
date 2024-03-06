@@ -1,6 +1,9 @@
-import {useState} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import './style.scss';
 import {Dropdown, Space} from 'antd';
+import DocViewer, {DocViewerRenderers} from '@cyntler/react-doc-viewer';
+
+import gif from '../../assets/gifs/gif.gif';
 
 const items = [
   {
@@ -395,7 +398,24 @@ const items1 = [
 const index = () => {
   const [hide, setHide] = useState(true);
   const [right, setRight] = useState(false);
-
+  //
+  const docs = [
+    {
+      uri: ' https://calibre-ebook.com/downloads/demos/demo.docx',
+      fileType: 'docx',
+      fileName: 'Another docx',
+    },
+    {
+      uri: ' https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf',
+      fileType: 'pdf',
+      fileName: 'anotherPdf.pdf',
+    },
+    {
+      uri: ' https://sample-videos.com/xls/Sample-Spreadsheet-10-rows.xls',
+      fileType: 'xls',
+      fileName: 'anotherxls.xls',
+    },
+  ];
   return (
     <section>
       <div className='container'>
@@ -680,10 +700,7 @@ const index = () => {
               <h3>Name</h3>
               <div className='doc__card' onClick={() => setRight(!right)}>
                 <div className='fr__doc'>
-                  <img
-                    src='https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/9b/97/91/9b979163-2462-996c-d753-d620fdd99c06/cover.jpg/400x400cc.jpg'
-                    alt='Image'
-                  />
+                  <img src={gif} alt='Image' />
                 </div>
 
                 <div className='doc__card--ff'>
@@ -907,42 +924,11 @@ const index = () => {
             </div>
 
             <div className='right__c'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-              repellat necessitatibus sint mollitia cum impedit consequuntur
-              placeat tempora libero? Placeat, sint! Deleniti laborum odit ipsum
-              corrupti beatae sapiente non ad mollitia error fugiat nam animi
-              quam dolorem velit officiis maiores vero culpa, sit deserunt?
-              Velit facilis nostrum doloremque id, dolorum magnam asperiores
-              molestiae est. Natus, magni doloribus omnis iste, maxime excepturi
-              impedit nulla aspernatur assumenda cupiditate dolor voluptates
-              aliquid vero ipsa asperiores necessitatibus sequi voluptas. Hic
-              rerum quos quasi sapiente beatae nemo modi, fuga, dolore molestiae
-              rem vel soluta optio quidem! Itaque reiciendis dicta consectetur
-              nobis repellendus delectus vel explicabo, a est enim id magnam
-              corrupti iste obcaecati numquam non dolore optio doloremque eos
-              fugit iure quis. Corrupti praesentium eius a magni iste officia
-              vero aperiam, vel distinctio odio qui, voluptates alias totam.
-              Pariatur fugiat velit saepe quam soluta ad excepturi cumque, rerum
-              neque accusamus provident similique repellendus atque iusto
-              doloribus dolorum tempora deserunt maiores exercitationem. Nemo,
-              mollitia! Quisquam rem eius similique officia, quos provident?
-              Officia vitae blanditiis ratione animi reprehenderit nulla quaerat
-              totam consequatur, distinctio id eaque quos ducimus doloribus ipsa
-              iusto esse quas nesciunt adipisci soluta, magnam pariatur cumque
-              odio aliquam magni? Labore officia odit blanditiis ipsa porro
-              deserunt magni exercitationem laborum nisi. Pariatur labore
-              praesentium at tempora magni, nam qui fugiat exercitationem. Harum
-              reprehenderit adipisci fugit nesciunt sit, asperiores repellendus
-              totam quod nulla esse, sequi ullam ipsum. Sunt perferendis tempora
-              mollitia exercitationem obcaecati repellat. Cupiditate accusantium
-              ullam est cumque, beatae culpa ex temporibus necessitatibus
-              aliquid non quod a placeat dolore totam adipisci at reprehenderit
-              sint tenetur ipsam repudiandae. Rerum, deleniti corporis quod
-              consequatur sint ex provident blanditiis, totam eaque repellendus
-              amet quis iusto officiis reiciendis necessitatibus nesciunt quos
-              deserunt nulla. Iusto, esse officiis! Veritatis dicta maiores
-              vitae, eveniet quisquam dignissimos facere aspernatur repellat
-              molestiae ratione voluptatum rem?
+              <DocViewer
+                documents={docs}
+                pluginRenderers={DocViewerRenderers}
+                style={{height: '200vh'}}
+              />
             </div>
           </div>
         </div>

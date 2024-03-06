@@ -3,6 +3,7 @@
   display: flex;
   align-items: start;
   gap: 5px;
+  overflow-y: hidden;
 }
 .home__wrapper {
   width: 60%;
@@ -299,5 +300,7 @@
 
   .right__c {
     padding: 20px;
+    overflow-y: scroll;
+    height: 100%;
   }
 }
